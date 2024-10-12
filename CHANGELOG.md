@@ -54,3 +54,9 @@
 <!-- 2026-07-28 --> - Add missing transition test for FAILED→PENDING_DISPATCH
 
 <!-- 2026-07-29 --> - Add CSV export for fleet utilization monthly report
+
+### 2024-10-12
+
+**feat: resolve organization slug to ID before database queries**
+
+Slug resolution now happens in middleware before any handler runs. Slugs are never used directly in queries.
