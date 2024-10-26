@@ -60,3 +60,9 @@
 **feat: resolve organization slug to ID before database queries**
 
 Slug resolution now happens in middleware before any handler runs. Slugs are never used directly in queries.
+
+### 2024-10-26
+
+**feat: implement RBAC with 5 roles and 17 granular permissions**
+
+Roles: OWNER, ADMIN, DISPATCHER, FLEET_MANAGER, DRIVER. Permission matrix enforced via requirePermission() on every route.
