@@ -66,3 +66,9 @@ Slug resolution now happens in middleware before any handler runs. Slugs are nev
 **feat: implement RBAC with 5 roles and 17 granular permissions**
 
 Roles: OWNER, ADMIN, DISPATCHER, FLEET_MANAGER, DRIVER. Permission matrix enforced via requirePermission() on every route.
+
+### 2024-10-27
+
+**feat: add delivery state machine with strict transition graph**
+
+assertValidTransition() rejects invalid moves with HTTP 422. Graph: DRAFT->PENDING->ASSIGNED->IN_TRANSIT->DELIVERED/FAILED.
