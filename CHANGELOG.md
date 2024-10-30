@@ -72,3 +72,9 @@ Roles: OWNER, ADMIN, DISPATCHER, FLEET_MANAGER, DRIVER. Permission matrix enforc
 **feat: add delivery state machine with strict transition graph**
 
 assertValidTransition() rejects invalid moves with HTTP 422. Graph: DRAFT->PENDING->ASSIGNED->IN_TRANSIT->DELIVERED/FAILED.
+
+### 2024-10-30
+
+**feat: concurrency-safe dispatch using SELECT FOR UPDATE**
+
+Lock ordering: Delivery -> Driver -> Vehicle. Losing dispatcher receives 409 CONFLICT immediately.
