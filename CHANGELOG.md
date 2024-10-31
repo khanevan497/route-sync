@@ -78,3 +78,9 @@ assertValidTransition() rejects invalid moves with HTTP 422. Graph: DRAFT->PENDI
 **feat: concurrency-safe dispatch using SELECT FOR UPDATE**
 
 Lock ordering: Delivery -> Driver -> Vehicle. Losing dispatcher receives 409 CONFLICT immediately.
+
+### 2024-10-31
+
+**feat: real-time Kanban dispatch board with 4 columns**
+
+Columns: PENDING_DISPATCH, ASSIGNED, IN_TRANSIT, FAILED. Inline assign modal pre-filters booked resources.
