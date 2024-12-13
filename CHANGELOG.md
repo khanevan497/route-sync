@@ -84,3 +84,9 @@ Lock ordering: Delivery -> Driver -> Vehicle. Losing dispatcher receives 409 CON
 **feat: real-time Kanban dispatch board with 4 columns**
 
 Columns: PENDING_DISPATCH, ASSIGNED, IN_TRANSIT, FAILED. Inline assign modal pre-filters booked resources.
+
+### 2024-12-13
+
+**fix: prevent driver double-booking on same date**
+
+The assign endpoint now validates no existing ASSIGNED/IN_TRANSIT delivery for the driver on the same calendar date.
