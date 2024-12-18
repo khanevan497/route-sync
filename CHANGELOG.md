@@ -90,3 +90,9 @@ Columns: PENDING_DISPATCH, ASSIGNED, IN_TRANSIT, FAILED. Inline assign modal pre
 **fix: prevent driver double-booking on same date**
 
 The assign endpoint now validates no existing ASSIGNED/IN_TRANSIT delivery for the driver on the same calendar date.
+
+### 2024-12-18
+
+**feat: driver mobile interface at /driver/[orgSlug]**
+
+Mobile-first view showing today's deliveries. Drivers can start route, submit POD, and report failure.
