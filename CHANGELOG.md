@@ -96,3 +96,9 @@ The assign endpoint now validates no existing ASSIGNED/IN_TRANSIT delivery for t
 **feat: driver mobile interface at /driver/[orgSlug]**
 
 Mobile-first view showing today's deliveries. Drivers can start route, submit POD, and report failure.
+
+### 2024-12-25
+
+**feat: proof of delivery capture with recipient name and notes**
+
+POD stored as a separate record linked 1:1 to delivery. Captured atomically with DELIVERED transition.
