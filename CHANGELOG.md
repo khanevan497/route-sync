@@ -102,3 +102,9 @@ Mobile-first view showing today's deliveries. Drivers can start route, submit PO
 **feat: proof of delivery capture with recipient name and notes**
 
 POD stored as a separate record linked 1:1 to delivery. Captured atomically with DELIVERED transition.
+
+### 2025-01-01
+
+**feat: immutable audit logging written in same transaction**
+
+AuditLog written in same Prisma transaction as the mutation. No window exists where a change has no audit entry.
