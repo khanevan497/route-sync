@@ -108,3 +108,9 @@ POD stored as a separate record linked 1:1 to delivery. Captured atomically with
 **feat: immutable audit logging written in same transaction**
 
 AuditLog written in same Prisma transaction as the mutation. No window exists where a change has no audit entry.
+
+### 2025-01-23
+
+**feat: snapshot delivery addresses at creation time**
+
+Addresses stored as JSON at creation. Customer address changes do not affect in-flight deliveries.
