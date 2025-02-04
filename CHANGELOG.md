@@ -114,3 +114,9 @@ AuditLog written in same Prisma transaction as the mutation. No window exists wh
 **feat: snapshot delivery addresses at creation time**
 
 Addresses stored as JSON at creation. Customer address changes do not affect in-flight deliveries.
+
+### 2025-02-04
+
+**feat: vehicle fleet management with status tracking**
+
+Statuses: AVAILABLE, ASSIGNED, IN_MAINTENANCE, OUT_OF_SERVICE. IN_MAINTENANCE and OUT_OF_SERVICE excluded from dispatch.
