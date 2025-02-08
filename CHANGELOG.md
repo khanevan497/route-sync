@@ -120,3 +120,9 @@ Addresses stored as JSON at creation. Customer address changes do not affect in-
 **feat: vehicle fleet management with status tracking**
 
 Statuses: AVAILABLE, ASSIGNED, IN_MAINTENANCE, OUT_OF_SERVICE. IN_MAINTENANCE and OUT_OF_SERVICE excluded from dispatch.
+
+### 2025-02-08
+
+**feat: append-only maintenance records per vehicle**
+
+Service history with nextDueAt timestamps. No UPDATE or DELETE on maintenance records.
