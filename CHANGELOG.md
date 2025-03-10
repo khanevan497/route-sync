@@ -126,3 +126,9 @@ Statuses: AVAILABLE, ASSIGNED, IN_MAINTENANCE, OUT_OF_SERVICE. IN_MAINTENANCE an
 **feat: append-only maintenance records per vehicle**
 
 Service history with nextDueAt timestamps. No UPDATE or DELETE on maintenance records.
+
+### 2025-03-10
+
+**feat: route management with ordered stops**
+
+Dispatchers group deliveries into routes. Stop order replaced atomically on reorder.
