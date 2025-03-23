@@ -132,3 +132,9 @@ Service history with nextDueAt timestamps. No UPDATE or DELETE on maintenance re
 **feat: route management with ordered stops**
 
 Dispatchers group deliveries into routes. Stop order replaced atomically on reorder.
+
+### 2025-03-23
+
+**feat: customer profiles with multiple delivery addresses**
+
+Address management separate from delivery snapshots. Updating customer address affects future deliveries only.
