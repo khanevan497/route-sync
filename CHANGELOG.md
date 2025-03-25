@@ -138,3 +138,9 @@ Dispatchers group deliveries into routes. Stop order replaced atomically on reor
 **feat: customer profiles with multiple delivery addresses**
 
 Address management separate from delivery snapshots. Updating customer address affects future deliveries only.
+
+### 2025-03-25
+
+**feat: async notifications via setImmediate post-commit**
+
+Notifications queued after transaction commit. Never block business logic. Swappable to BullMQ/SQS at one callsite.
