@@ -144,3 +144,9 @@ Address management separate from delivery snapshots. Updating customer address a
 **feat: async notifications via setImmediate post-commit**
 
 Notifications queued after transaction commit. Never block business logic. Swappable to BullMQ/SQS at one callsite.
+
+### 2025-03-27
+
+**feat: live dashboard with 8 real-time metrics**
+
+Today's deliveries, active, completed, failed, pending queue depth, available drivers, vehicles, vehicles in maintenance.
