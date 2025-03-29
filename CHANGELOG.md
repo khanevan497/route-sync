@@ -150,3 +150,9 @@ Notifications queued after transaction commit. Never block business logic. Swapp
 **feat: live dashboard with 8 real-time metrics**
 
 Today's deliveries, active, completed, failed, pending queue depth, available drivers, vehicles, vehicles in maintenance.
+
+### 2025-03-29
+
+**test: 33 unit tests for state machine and RBAC**
+
+Tests cover all valid transitions, all invalid transitions, available-transitions filter, and role permission boundaries.
