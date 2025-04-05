@@ -156,3 +156,9 @@ Today's deliveries, active, completed, failed, pending queue depth, available dr
 **test: 33 unit tests for state machine and RBAC**
 
 Tests cover all valid transitions, all invalid transitions, available-transitions filter, and role permission boundaries.
+
+### 2025-04-05
+
+**feat: paginated audit log with resource-type filtering**
+
+Audit log accessible to OWNER and ADMIN. Pagination and filtering by resource type (delivery, driver, vehicle, route).
