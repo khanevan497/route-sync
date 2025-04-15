@@ -162,3 +162,9 @@ Tests cover all valid transitions, all invalid transitions, available-transition
 **feat: paginated audit log with resource-type filtering**
 
 Audit log accessible to OWNER and ADMIN. Pagination and filtering by resource type (delivery, driver, vehicle, route).
+
+### 2025-04-15
+
+**fix: resolve NextAuth.js session expiry on JWT refresh**
+
+Session was not refreshing the JWT on each request. Fixed by setting updateAge: 0 in NextAuth config.
