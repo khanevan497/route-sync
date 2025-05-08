@@ -168,3 +168,9 @@ Audit log accessible to OWNER and ADMIN. Pagination and filtering by resource ty
 **fix: resolve NextAuth.js session expiry on JWT refresh**
 
 Session was not refreshing the JWT on each request. Fixed by setting updateAge: 0 in NextAuth config.
+
+### 2025-05-08
+
+**refactor: extract tenant context resolution to middleware**
+
+TenantContext now resolved once per request in middleware. All handlers receive pre-resolved orgId.
