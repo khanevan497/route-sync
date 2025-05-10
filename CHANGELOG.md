@@ -174,3 +174,9 @@ Session was not refreshing the JWT on each request. Fixed by setting updateAge: 
 **refactor: extract tenant context resolution to middleware**
 
 TenantContext now resolved once per request in middleware. All handlers receive pre-resolved orgId.
+
+### 2025-05-10
+
+**feat: vehicle maintenance scheduling with nextDueAt reminders**
+
+Dashboard shows vehicles with upcoming maintenance due within 7 days. Reminder badge on fleet page.
