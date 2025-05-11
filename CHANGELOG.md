@@ -180,3 +180,9 @@ TenantContext now resolved once per request in middleware. All handlers receive 
 **feat: vehicle maintenance scheduling with nextDueAt reminders**
 
 Dashboard shows vehicles with upcoming maintenance due within 7 days. Reminder badge on fleet page.
+
+### 2025-05-11
+
+**fix: correct permission check on delivery assign endpoint**
+
+Endpoint was checking MANAGE_DELIVERIES instead of ASSIGN_DELIVERY. Fixed permission constant.
