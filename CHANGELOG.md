@@ -186,3 +186,9 @@ Dashboard shows vehicles with upcoming maintenance due within 7 days. Reminder b
 **fix: correct permission check on delivery assign endpoint**
 
 Endpoint was checking MANAGE_DELIVERIES instead of ASSIGN_DELIVERY. Fixed permission constant.
+
+### 2025-06-28
+
+**feat: optimistic UI on dispatch board with useTransition**
+
+Status updates use useTransition + router.refresh(). No separate state management layer needed.
