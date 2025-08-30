@@ -198,3 +198,9 @@ Status updates use useTransition + router.refresh(). No separate state managemen
 **docs: add data model entity relationship documentation**
 
 Documents all foreign keys, nullable fields, JSON columns, and index rationale for each entity.
+
+### 2025-08-30
+
+**feat: categorized failure reasons on delivery failure**
+
+Failure reasons: RECIPIENT_ABSENT, WRONG_ADDRESS, REFUSED_DELIVERY, ACCESS_DENIED, OTHER. Stored on delivery record.
