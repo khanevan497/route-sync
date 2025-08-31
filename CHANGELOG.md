@@ -204,3 +204,9 @@ Documents all foreign keys, nullable fields, JSON columns, and index rationale f
 **feat: categorized failure reasons on delivery failure**
 
 Failure reasons: RECIPIENT_ABSENT, WRONG_ADDRESS, REFUSED_DELIVERY, ACCESS_DENIED, OTHER. Stored on delivery record.
+
+### 2025-08-31
+
+**fix: resolve Prisma connection pool exhaustion under load**
+
+Increased connection pool size and added connection timeout. Singleton PrismaClient instance across requests.
