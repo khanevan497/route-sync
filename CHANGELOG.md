@@ -210,3 +210,9 @@ Failure reasons: RECIPIENT_ABSENT, WRONG_ADDRESS, REFUSED_DELIVERY, ACCESS_DENIE
 **fix: resolve Prisma connection pool exhaustion under load**
 
 Increased connection pool size and added connection timeout. Singleton PrismaClient instance across requests.
+
+### 2025-09-20
+
+**chore: upgrade Prisma to v7 with @prisma/adapter-pg**
+
+Migrated from prisma/client to prisma/adapter-pg driver adapter. Updated all query patterns for v7 API.
