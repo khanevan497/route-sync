@@ -216,3 +216,9 @@ Increased connection pool size and added connection timeout. Singleton PrismaCli
 **chore: upgrade Prisma to v7 with @prisma/adapter-pg**
 
 Migrated from prisma/client to prisma/adapter-pg driver adapter. Updated all query patterns for v7 API.
+
+### 2025-11-03
+
+**feat: global search across deliveries customers and routes**
+
+Single endpoint returns ranked results across all entity types filtered to current organization.
