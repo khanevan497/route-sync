@@ -222,3 +222,9 @@ Migrated from prisma/client to prisma/adapter-pg driver adapter. Updated all que
 **feat: global search across deliveries customers and routes**
 
 Single endpoint returns ranked results across all entity types filtered to current organization.
+
+### 2025-12-04
+
+**fix: correct pagination offset calculation on delivery list**
+
+Off-by-one error in skip calculation when page > 1. Fixed formula: skip = (page - 1) * limit.
