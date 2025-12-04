@@ -228,3 +228,9 @@ Single endpoint returns ranked results across all entity types filtered to curre
 **fix: correct pagination offset calculation on delivery list**
 
 Off-by-one error in skip calculation when page > 1. Fixed formula: skip = (page - 1) * limit.
+
+### 2025-12-04
+
+**feat: export delivery data to CSV**
+
+Export endpoint streams CSV with delivery ID, status, driver, vehicle, addresses, timestamps.
