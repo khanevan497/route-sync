@@ -234,3 +234,9 @@ Off-by-one error in skip calculation when page > 1. Fixed formula: skip = (page 
 **feat: export delivery data to CSV**
 
 Export endpoint streams CSV with delivery ID, status, driver, vehicle, addresses, timestamps.
+
+### 2025-12-16
+
+**refactor: unified error handling middleware for all API routes**
+
+Consolidated scattered try/catch into a single error handler. Maps Prisma errors to HTTP status codes.
