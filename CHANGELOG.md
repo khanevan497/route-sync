@@ -240,3 +240,9 @@ Export endpoint streams CSV with delivery ID, status, driver, vehicle, addresses
 **refactor: unified error handling middleware for all API routes**
 
 Consolidated scattered try/catch into a single error handler. Maps Prisma errors to HTTP status codes.
+
+### 2026-01-07
+
+**docs: complete REST API reference with request and error codes**
+
+All 28 endpoints documented with method, path, auth requirement, request body, response shape, error codes.
