@@ -246,3 +246,9 @@ Consolidated scattered try/catch into a single error handler. Maps Prisma errors
 **docs: complete REST API reference with request and error codes**
 
 All 28 endpoints documented with method, path, auth requirement, request body, response shape, error codes.
+
+### 2026-01-08
+
+**feat: organization settings page with team member management**
+
+OWNER can invite members, change roles, and remove members. Role changes take effect immediately.
