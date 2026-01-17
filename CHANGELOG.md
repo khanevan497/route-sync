@@ -252,3 +252,9 @@ All 28 endpoints documented with method, path, auth requirement, request body, r
 **feat: organization settings page with team member management**
 
 OWNER can invite members, change roles, and remove members. Role changes take effect immediately.
+
+### 2026-01-17
+
+**fix: normalize timezone handling on delivery timestamps**
+
+All timestamps now stored as UTC. Frontend displays in user local timezone using Intl.DateTimeFormat.
