@@ -258,3 +258,9 @@ OWNER can invite members, change roles, and remove members. Role changes take ef
 **fix: normalize timezone handling on delivery timestamps**
 
 All timestamps now stored as UTC. Frontend displays in user local timezone using Intl.DateTimeFormat.
+
+### 2026-02-15
+
+**feat: bulk delivery status update endpoint**
+
+PATCH /api/[orgSlug]/deliveries/bulk accepts array of IDs and target status. Validates each transition individually.
