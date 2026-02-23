@@ -264,3 +264,9 @@ All timestamps now stored as UTC. Frontend displays in user local timezone using
 **feat: bulk delivery status update endpoint**
 
 PATCH /api/[orgSlug]/deliveries/bulk accepts array of IDs and target status. Validates each transition individually.
+
+### 2026-02-23
+
+**perf: add composite database indexes for common query patterns**
+
+Added indexes on (organizationId, status), (organizationId, driverId), (organizationId, vehicleId).
