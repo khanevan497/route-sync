@@ -270,3 +270,9 @@ PATCH /api/[orgSlug]/deliveries/bulk accepts array of IDs and target status. Val
 **perf: add composite database indexes for common query patterns**
 
 Added indexes on (organizationId, status), (organizationId, driverId), (organizationId, vehicleId).
+
+### 2026-03-16
+
+**fix: resolve race condition in route stop reordering**
+
+Stop reorder now uses a transaction to delete existing stops and insert new order atomically.
