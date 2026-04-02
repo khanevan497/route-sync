@@ -276,3 +276,9 @@ Added indexes on (organizationId, status), (organizationId, driverId), (organiza
 **fix: resolve race condition in route stop reordering**
 
 Stop reorder now uses a transaction to delete existing stops and insert new order atomically.
+
+### 2026-04-02
+
+**feat: driver availability view with calendar integration**
+
+Calendar view shows driver assigned deliveries per day. Available days highlighted for dispatcher planning.
