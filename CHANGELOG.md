@@ -282,3 +282,9 @@ Stop reorder now uses a transaction to delete existing stops and insert new orde
 **feat: driver availability view with calendar integration**
 
 Calendar view shows driver assigned deliveries per day. Available days highlighted for dispatcher planning.
+
+### 2026-04-04
+
+**feat: Docker Compose for local PostgreSQL development**
+
+docker-compose.yml starts PostgreSQL 16 on port 5432 with persistent volume and health check.
