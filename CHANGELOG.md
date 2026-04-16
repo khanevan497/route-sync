@@ -288,3 +288,9 @@ Calendar view shows driver assigned deliveries per day. Available days highlight
 **feat: Docker Compose for local PostgreSQL development**
 
 docker-compose.yml starts PostgreSQL 16 on port 5432 with persistent volume and health check.
+
+### 2026-04-16
+
+**feat: delivery metrics aggregation endpoint**
+
+Returns daily counts for created, completed, failed deliveries over a configurable date range.
