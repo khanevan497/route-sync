@@ -294,3 +294,9 @@ docker-compose.yml starts PostgreSQL 16 on port 5432 with persistent volume and 
 **feat: delivery metrics aggregation endpoint**
 
 Returns daily counts for created, completed, failed deliveries over a configurable date range.
+
+### 2026-05-02
+
+**fix: fix date range edge case in delivery scheduling**
+
+Deliveries scheduled for midnight were being assigned to the wrong calendar day due to UTC offset.
