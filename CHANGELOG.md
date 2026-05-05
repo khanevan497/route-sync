@@ -306,3 +306,9 @@ Deliveries scheduled for midnight were being assigned to the wrong calendar day 
 **refactor: move permission logic to shared requirePermission utility**
 
 requirePermission() now accepts role and permission, returns 403 with descriptive message on failure.
+
+### 2026-05-05
+
+**feat: vehicle assignment history tracking**
+
+VehicleAssignment records track which deliveries each vehicle was assigned to with timestamps.
