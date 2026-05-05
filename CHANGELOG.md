@@ -300,3 +300,9 @@ Returns daily counts for created, completed, failed deliveries over a configurab
 **fix: fix date range edge case in delivery scheduling**
 
 Deliveries scheduled for midnight were being assigned to the wrong calendar day due to UTC offset.
+
+### 2026-05-05
+
+**refactor: move permission logic to shared requirePermission utility**
+
+requirePermission() now accepts role and permission, returns 403 with descriptive message on failure.
