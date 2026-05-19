@@ -312,3 +312,9 @@ requirePermission() now accepts role and permission, returns 403 with descriptiv
 **feat: vehicle assignment history tracking**
 
 VehicleAssignment records track which deliveries each vehicle was assigned to with timestamps.
+
+### 2026-05-19
+
+**docs: add architecture decision records**
+
+ADRs for: multi-tenancy at application layer, state machine pattern, Prisma v7 adapter, NextAuth v5.
