@@ -318,3 +318,9 @@ VehicleAssignment records track which deliveries each vehicle was assigned to wi
 **docs: add architecture decision records**
 
 ADRs for: multi-tenancy at application layer, state machine pattern, Prisma v7 adapter, NextAuth v5.
+
+### 2026-05-23
+
+**fix: resolve infinite scroll duplication on delivery list**
+
+Cursor-based pagination replaced offset-based. Duplicate items no longer appear when new deliveries are added.
