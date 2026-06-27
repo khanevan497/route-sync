@@ -330,3 +330,9 @@ Cursor-based pagination replaced offset-based. Duplicate items no longer appear 
 **feat: organization onboarding wizard for first-time setup**
 
 Step-by-step wizard on first login: create org, add first driver, add first vehicle, create first delivery.
+
+### 2026-06-27
+
+**chore: update ESLint config and resolve all lint warnings**
+
+Migrated to eslint flat config. Fixed all unused variable warnings and missing return type annotations.
