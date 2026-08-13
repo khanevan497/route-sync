@@ -336,3 +336,9 @@ Step-by-step wizard on first login: create org, add first driver, add first vehi
 **chore: update ESLint config and resolve all lint warnings**
 
 Migrated to eslint flat config. Fixed all unused variable warnings and missing return type annotations.
+
+### 2026-08-13
+
+**feat: delivery address autocomplete via customer address lookup**
+
+Delivery creation form autocompletes pickup and dropoff addresses from customer address records.
