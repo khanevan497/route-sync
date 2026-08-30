@@ -342,3 +342,9 @@ Migrated to eslint flat config. Fixed all unused variable warnings and missing r
 **feat: delivery address autocomplete via customer address lookup**
 
 Delivery creation form autocompletes pickup and dropoff addresses from customer address records.
+
+### 2026-08-30
+
+**release: v1.0.0 stable multi-tenant logistics platform**
+
+Tagging first stable release. All core features complete: multi-tenancy, RBAC, state machine, dispatch, POD, audit log.
