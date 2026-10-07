@@ -1,0 +1,383 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// Multi-tenancy: every record belongs to an Organization (tenant)
+model Organization {
+  id        String   @id @default(cuid())
+  name      String
+  slug      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  memberships        Membership[]
+  drivers            Driver[]
+  vehicles           Vehicle[]
+  customers          Customer[]
+  deliveries         Delivery[]
+  routes             Route[]
+  maintenanceRecords MaintenanceRecord[]
+  auditLogs          AuditLog[]
+  notifications      Notification[]
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  name          String
+  passwordHash  String?
+  emailVerified DateTime?
+  image         String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  memberships   Membership[]
+  driverProfile Driver?
+  accounts      Account[]
+  sessions      Session[]
+}
+
+model Membership {
+  id             String     @id @default(cuid())
+  userId         String
+  organizationId String
+  role           MemberRole
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+
+  user         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, organizationId])
+}
+
+enum MemberRole {
+  OWNER
+  ADMIN
+  DISPATCHER
+  DRIVER
+  FLEET_MANAGER
+}
+
+model Driver {
+  id             String       @id @default(cuid())
+  organizationId String
+  userId         String?      @unique
+  name           String
+  email          String
+  phone          String?
+  licenseNumber  String
+  licenseExpiry  DateTime
+  status         DriverStatus @default(ACTIVE)
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  user         User?        @relation(fields: [userId], references: [id])
+  deliveries   Delivery[]
+  routes       Route[]
+
+  @@index([organizationId])
+}
+
+enum DriverStatus {
+  ACTIVE
+  INACTIVE
+  SUSPENDED
+}
+
+model Vehicle {
+  id                 String        @id @default(cuid())
+  organizationId     String
+  registrationNumber String
+  make               String
+  model              String
+  year               Int
+  type               VehicleType
+  status             VehicleStatus @default(AVAILABLE)
+  mileage            Int           @default(0)
+  createdAt          DateTime      @default(now())
+  updatedAt          DateTime      @updatedAt
+
+  organization       Organization        @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  deliveries         Delivery[]
+  routes             Route[]
+  maintenanceRecords MaintenanceRecord[]
+
+  @@unique([organizationId, registrationNumber])
+  @@index([organizationId])
+}
+
+enum VehicleType {
+  VAN
+  TRUCK
+  MOTORCYCLE
+  CAR
+  OTHER
+}
+
+enum VehicleStatus {
+  AVAILABLE
+  ASSIGNED
+  IN_MAINTENANCE
+  OUT_OF_SERVICE
+}
+
+model Customer {
+  id             String   @id @default(cuid())
+  organizationId String
+  name           String
+  email          String?
+  phone          String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  organization Organization      @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  addresses    CustomerAddress[]
+  deliveries   Delivery[]
+
+  @@index([organizationId])
+}
+
+model CustomerAddress {
+  id         String   @id @default(cuid())
+  customerId String
+  label      String?
+  street     String
+  city       String
+  state      String?
+  postalCode String?
+  country    String   @default("US")
+  isDefault  Boolean  @default(false)
+  createdAt  DateTime @default(now())
+
+  customer Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+}
+
+model Delivery {
+  id             String         @id @default(cuid())
+  organizationId String
+  customerId     String
+  driverId       String?
+  vehicleId      String?
+  routeId        String?
+  status         DeliveryStatus @default(DRAFT)
+  priority       Priority       @default(NORMAL)
+
+  // Address snapshots - captured at creation so history is immutable
+  pickupAddress   Json
+  deliveryAddress Json
+
+  scheduledDate   DateTime?
+  timeWindowStart DateTime?
+  timeWindowEnd   DateTime?
+  notes           String?
+  failureReason   FailureReason?
+  failureNote     String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  organization    Organization     @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  customer        Customer         @relation(fields: [customerId], references: [id])
+  driver          Driver?          @relation(fields: [driverId], references: [id])
+  vehicle         Vehicle?         @relation(fields: [vehicleId], references: [id])
+  route           Route?           @relation(fields: [routeId], references: [id])
+  proofOfDelivery ProofOfDelivery?
+
+  @@index([organizationId])
+  @@index([organizationId, status])
+  @@index([driverId])
+}
+
+enum DeliveryStatus {
+  DRAFT
+  PENDING_DISPATCH
+  ASSIGNED
+  IN_TRANSIT
+  DELIVERED
+  FAILED
+  CANCELLED
+}
+
+enum Priority {
+  LOW
+  NORMAL
+  HIGH
+  URGENT
+}
+
+enum FailureReason {
+  CUSTOMER_UNAVAILABLE
+  WRONG_ADDRESS
+  DAMAGED_PACKAGE
+  REFUSED_DELIVERY
+  VEHICLE_ISSUE
+  OTHER
+}
+
+model ProofOfDelivery {
+  id             String   @id @default(cuid())
+  organizationId String
+  deliveryId     String   @unique
+  recipientName  String
+  signatureKey   String?
+  photoKey       String?
+  deliveredAt    DateTime
+  driverNotes    String?
+  createdAt      DateTime @default(now())
+
+  delivery Delivery @relation(fields: [deliveryId], references: [id], onDelete: Cascade)
+
+  @@index([organizationId])
+}
+
+model Route {
+  id             String      @id @default(cuid())
+  organizationId String
+  driverId       String?
+  vehicleId      String?
+  name           String
+  date           DateTime
+  status         RouteStatus @default(PLANNED)
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  driver       Driver?      @relation(fields: [driverId], references: [id])
+  vehicle      Vehicle?     @relation(fields: [vehicleId], references: [id])
+  stops        RouteStop[]
+  deliveries   Delivery[]
+
+  @@index([organizationId])
+}
+
+enum RouteStatus {
+  PLANNED
+  ACTIVE
+  COMPLETED
+  CANCELLED
+}
+
+model RouteStop {
+  id         String  @id @default(cuid())
+  routeId    String
+  deliveryId String?
+  stopOrder  Int
+  address    Json
+  notes      String?
+
+  route Route @relation(fields: [routeId], references: [id], onDelete: Cascade)
+
+  @@index([routeId])
+}
+
+model MaintenanceRecord {
+  id             String          @id @default(cuid())
+  organizationId String
+  vehicleId      String
+  type           MaintenanceType
+  description    String
+  mileage        Int
+  cost           Decimal?        @db.Decimal(10, 2)
+  performedAt    DateTime
+  nextDueAt      DateTime?
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  vehicle      Vehicle      @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
+
+  @@index([organizationId])
+  @@index([vehicleId])
+}
+
+enum MaintenanceType {
+  OIL_SERVICE
+  INSPECTION
+  TIRE_REPLACEMENT
+  REPAIR
+  OTHER
+}
+
+model AuditLog {
+  id             String   @id @default(cuid())
+  organizationId String
+  actorUserId    String
+  action         String
+  resourceType   String
+  resourceId     String
+  metadata       Json?
+  requestId      String?
+  createdAt      DateTime @default(now())
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@index([organizationId, createdAt(sort: Desc)])
+  @@index([resourceType, resourceId])
+}
+
+model Notification {
+  id             String           @id @default(cuid())
+  organizationId String
+  userId         String
+  type           NotificationType
+  title          String
+  body           String
+  resourceType   String?
+  resourceId     String?
+  read           Boolean          @default(false)
+  createdAt      DateTime         @default(now())
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@index([organizationId, userId, read])
+}
+
+enum NotificationType {
+  DELIVERY_ASSIGNED
+  DELIVERY_REASSIGNED
+  DELIVERY_FAILED
+  MAINTENANCE_DUE
+  SYSTEM
+}
+
+// NextAuth.js required models
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}

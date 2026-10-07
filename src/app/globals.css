@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+@theme {
+  /* RouteSync Color Palette */
+  --color-background: #F8FAFC;
+  --color-surface: #FFFFFF;
+
+  --color-primary: #0F172A;
+  --color-primary-foreground: #FFFFFF;
+
+  --color-accent: #0D9488;
+  --color-accent-foreground: #FFFFFF;
+
+  --color-success: #16A34A;
+  --color-success-foreground: #FFFFFF;
+
+  --color-warning: #D97706;
+  --color-warning-foreground: #FFFFFF;
+
+  --color-danger: #DC2626;
+  --color-danger-foreground: #FFFFFF;
+
+  --color-border: #E2E8F0;
+  --color-muted: #64748B;
+  --color-muted-foreground: #64748B;
+
+  /* shadcn/ui CSS variable mappings */
+  --color-foreground: #0F172A;
+  --color-card: #FFFFFF;
+  --color-card-foreground: #0F172A;
+  --color-popover: #FFFFFF;
+  --color-popover-foreground: #0F172A;
+  --color-secondary: #F1F5F9;
+  --color-secondary-foreground: #0F172A;
+  --color-destructive: #DC2626;
+  --color-destructive-foreground: #FFFFFF;
+  --color-input: #E2E8F0;
+  --color-ring: #0D9488;
+
+  /* Border radius */
+  --radius: 0.5rem;
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  /* Fonts */
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+:root {
+  /* Legacy CSS variables for shadcn components that use var() directly */
+  --background: #F8FAFC;
+  --foreground: #0F172A;
+  --card: #FFFFFF;
+  --card-foreground: #0F172A;
+  --popover: #FFFFFF;
+  --popover-foreground: #0F172A;
+  --primary: #0F172A;
+  --primary-foreground: #FFFFFF;
+  --secondary: #F1F5F9;
+  --secondary-foreground: #0F172A;
+  --muted: #F1F5F9;
+  --muted-foreground: #64748B;
+  --accent: #F1F5F9;
+  --accent-foreground: #0F172A;
+  --destructive: #DC2626;
+  --destructive-foreground: #FFFFFF;
+  --border: #E2E8F0;
+  --input: #E2E8F0;
+  --ring: #0D9488;
+  --radius: 0.5rem;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans, Arial, Helvetica, sans-serif);
+}
+
+* {
+  border-color: var(--border);
+}
